@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Super Ricuras | Pizzería</title>
+<meta name="description" content="Super Ricuras - Pizzería en Ciudad Dorada Mz 10 Nro 1. Pide por WhatsApp al 321 748 8811.">
+<style>
+  :root {
+    --rojo: #d62828;
+    --naranja: #f77f00;
+    --amarillo: #fcbf49;
+    --crema: #fff8ee;
+    --oscuro: #2b1c14;
+    --gris: #6b5b4f;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--crema);
+    color: var(--oscuro);
+    line-height: 1.5;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+
+  header {
+    background: var(--rojo);
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  }
+  .nav-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .logo span.emoji { font-size: 1.6rem; }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+  }
+  nav a {
+    font-weight: 600;
+    font-size: 0.95rem;
+    opacity: 0.95;
+    transition: opacity 0.2s;
+  }
+  nav a:hover { opacity: 1; text-decoration: underline; }
+
+  .hero {
+    background: linear-gradient(135deg, var(--rojo), var(--naranja));
+    color: white;
+    text-align: center;
+    padding: 70px 20px 80px;
+  }
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    margin-bottom: 14px;
+  }
+  .hero p {
+    font-size: 1.15rem;
+    max-width: 600px;
+    margin: 0 auto 30px;
+    opacity: 0.95;
+  }
+  .btn {
+    display: inline-block;
+    background: #25D366;
+    color: white;
+    font-weight: 700;
+    padding: 14px 30px;
+    border-radius: 50px;
+    font-size: 1.05rem;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    transition: transform 0.15s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn.secondary {
+    background: white;
+    color: var(--rojo);
+  }
+
+  section { padding: 60px 20px; }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+  h2.section-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--rojo);
+    margin-bottom: 10px;
+  }
+  .section-sub {
+    text-align: center;
+    color: var(--gris);
+    max-width: 600px;
+    margin: 0 auto 40px;
+  }
+
+  .about {
+    background: white;
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+  .about-card {
+    background: var(--crema);
+    border-radius: 16px;
+    padding: 30px;
+  }
+  .about-card h3 {
+    color: var(--naranja);
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+  }
+  @media (max-width: 700px) {
+    .about-grid { grid-template-columns: 1fr; }
+  }
+
+  .menu-note {
+    background: #fff3cd;
+    border: 1px dashed var(--naranja);
+    color: #7a5200;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    max-width: 700px;
+    margin: 0 auto 30px;
+    text-align: center;
+  }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
+  .menu-cat {
+    background: white;
+    border-radius: 16px;
+    padding: 26px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  }
+  .menu-cat h3 {
+    color: var(--rojo);
+    font-size: 1.3rem;
+    margin-bottom: 16px;
+    border-bottom: 2px solid var(--amarillo);
+    padding-bottom: 8px;
+  }
+  .menu-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0e6d8;
+  }
+  .menu-item:last-child { border-bottom: none; }
+  .menu-item .name { font-weight: 600; }
+  .menu-item .desc { display: block; font-size: 0.85rem; color: var(--gris); font-weight: 400; }
+  .menu-item .price { font-weight: 700; color: var(--naranja); white-space: nowrap; }
+
+  .contact {
+    background: var(--oscuro);
+    color: white;
+  }
+  .contact h2 { color: var(--amarillo); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    margin-top: 30px;
+  }
+  .contact-card {
+    background: rgba(255,255,255,0.06);
+    border-radius: 14px;
+    padding: 24px;
+    text-align: center;
+  }
+  .contact-card .emoji { font-size: 1.8rem; margin-bottom: 10px; }
+  .contact-card h4 { color: var(--amarillo); margin-bottom: 6px; font-size: 1rem; }
+  .contact-cta { text-align: center; margin-top: 40px; }
+
+  footer {
+    background: #1a110b;
+    color: #b8a998;
+    text-align: center;
+    padding: 24px 20px;
+    font-size: 0.85rem;
+  }
+  footer strong { color: white; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <div class="logo"><span class="emoji">🍕</span> SUPER RICURAS</div>
+    <nav>
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#menu">Menú</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section id="inicio" class="hero">
+  <h1>SUPER RICURAS</h1>
+  <p>Pizzas artesanales recién horneadas, listas para pedir por WhatsApp y recibir en la puerta de tu casa en Ciudad Dorada.</p>
+  <a class="btn" href="https://wa.me/573217488811?text=Hola%20Super%20Ricuras%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener">📲 Pedir por WhatsApp</a>
+</section>
+
+<section id="nosotros" class="about">
+  <div class="wrap">
+    <h2 class="section-title">Nuestra historia</h2>
+    <p class="section-sub">Conoce un poco más sobre Super Ricuras</p>
+    <div class="about-grid">
+      <div>
+        <p><strong>Super Ricuras</strong> es una pizzería de barrio en Ciudad Dorada dedicada a preparar pizzas frescas, con masa artesanal e ingredientes de calidad, pensadas para compartir en familia o disfrutar en pareja.</p>
+        <br>
+        <p>Nuestro pedido es 100% por WhatsApp: eliges tu pizza, confirmas tu dirección y en minutos la estamos preparando para ti.</p>
+      </div>
+      <div class="about-card">
+        <h3>🕒 Horario de atención</h3>
+        <p>Editar con el horario real, ejemplo:<br>Lunes a domingo: 5:00 p.m. – 10:00 p.m.</p>
+        <h3 style="margin-top:20px;">🚚 Domicilios</h3>
+        <p>Entregamos en Ciudad Dorada y sectores cercanos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="menu" style="background: var(--crema);">
+  <div class="wrap">
+    <h2 class="section-title">Nuestro Menú</h2>
+    <p class="section-sub">Precios y disponibilidad sujetos a cambios</p>
+    <div class="menu-note">
+      ✏️ Este menú es un ejemplo de referencia. Reemplaza los nombres, ingredientes y precios por los reales de Super Ricuras antes de publicar.
+    </div>
+    <div class="menu-grid">
+
+      <div class="menu-cat">
+        <h3>Pizzas Clásicas</h3>
+        <div class="menu-item">
+          <div>
+            <span class="name">Margarita</span>
+            <span class="desc">Salsa de tomate, mozzarella y albahaca</span>
+          </div>
+          <span class="price">$ ---</span>
+        </div>
+        <div class="menu-item">
+          <div>
+            <span class="name">Pepperoni</span>
+            <span class="desc">Salsa de tomate, mozzarella y pepperoni</span>
+          </div>
+          <span class="price">$ ---</span>
+        </div>
+        <div class="menu-item">
+          <div>
+            <span class="name">Hawaiana</span>
+            <span class="desc">Jamón, piña y mozzarella</span>
+          </div>
+          <span class="price">$ ---</span>
+        </div>
+      </div>
+
+      <div class="menu-cat">
+        <h3>Pizzas Especiales</h3>
+        <div class="menu-item">
+          <div>
+            <span class="name">Super Ricuras</span>
+            <span class="desc">La especialidad de la casa, todos los toppings</span>
+          </div>
+          <span class="price">$ ---</span>
+        </div>
+        <div class="menu-item">
+          <div>
+            <span class="name">Mexicana</span>
+            <span class="desc">Carne, jalapeños, maíz y pico de gallo</span>
+          </div>
+          <span class="price">$ ---</span>
+        </div>
+        <div class="menu-item">
+          <div>
+            <span class="name">Vegetariana</span>
+            <span class="desc">Champiñones, pimentón, cebolla y aceitunas</span>
+          </div>
+          <span class="price">$ ---</span>
+        </div>
+      </div>
+
+      <div class="menu-cat">
+        <h3>Adicionales</h3>
+        <div class="menu-item">
+          <div><span class="name">Borde de queso</span></div>
+          <span class="price">$ ---</span>
+        </div>
+        <div class="menu-item">
+          <div><span class="name">Pan de ajo</span></div>
+          <span class="price">$ ---</span>
+        </div>
+        <div class="menu-item">
+          <div><span class="name">Alitas BBQ (6 uds)</span></div>
+          <span class="price">$ ---</span>
+        </div>
+      </div>
+
+      <div class="menu-cat">
+        <h3>Bebidas</h3>
+        <div class="menu-item">
+          <div><span class="name">Gaseosa 400ml</span></div>
+          <span class="price">$ ---</span>
+        </div>
+        <div class="menu-item">
+          <div><span class="name">Jugo natural</span></div>
+          <span class="price">$ ---</span>
+        </div>
+        <div class="menu-item">
+          <div><span class="name">Agua</span></div>
+          <span class="price">$ ---</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="contacto" class="contact">
+  <div class="wrap">
+    <h2 class="section-title">Contacto</h2>
+    <p class="section-sub" style="color:#d8cabc;">Escríbenos y haz tu pedido</p>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="emoji">📍</div>
+        <h4>Dirección</h4>
+        <p>Ciudad Dorada Mz 10 Nro 1</p>
+      </div>
+      <div class="contact-card">
+        <div class="emoji">📞</div>
+        <h4>Teléfono / WhatsApp</h4>
+        <p>321 748 8811</p>
+      </div>
+      <div class="contact-card">
+        <div class="emoji">✉️</div>
+        <h4>Correo</h4>
+        <p>contacto@superricuras.com</p>
+      </div>
+    </div>
+    <div class="contact-cta">
+      <a class="btn secondary" href="https://wa.me/573217488811?text=Hola%20Super%20Ricuras%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener">📲 Escribir por WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p><strong>SUPER RICURAS</strong> — Ciudad Dorada Mz 10 Nro 1 · 321 748 8811</p>
+  <p>© <span id="year"></span> Super Ricuras. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
